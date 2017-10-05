@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
 
   def log_in(user)
     session[:user_id] = user.id
-    remember_token = SecureRandom.urlsafe_base64
-    remember_token = Digest::SHA1.hexdigest(remember_token.to_s)
-    cookies.permanent[:remember_token] = remember_token
+    cookies.permanent[:remember_token] = user.new_token(user)
   end
 end
