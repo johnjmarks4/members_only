@@ -2,6 +2,7 @@ require 'bcrypt'
 require 'digest'
 
 class User < ApplicationRecord
+  attr_accessor :remember_token
   has_secure_password
 
   before_create do
