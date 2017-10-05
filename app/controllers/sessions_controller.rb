@@ -5,8 +5,11 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(id: session[:user_id])
     if !@user.nil? && @user.authenticate(session[:password])
-      log_in(@user)
-      redirect_to sessions_new_path
+      @current_user = log_in(@user)
+      render sessions_create_path
     end
+  end
+
+  def delete
   end
 end
