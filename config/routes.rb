@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'posts/new'
+
+  get 'posts/create'
+
   get 'users/new'
 
   get 'users/create'
@@ -17,7 +21,13 @@ Rails.application.routes.draw do
 
   get '/logout', to: 'sessions#destroy'
 
+  post '/posts/create' => 'posts#create'
+
+  get '/posts/create' => 'posts#create'
+
   delete '/logout',  to: 'sessions#destroy'
+
+  get 'posts/index' => 'posts#index'
 
   resources :posts, :only => [:new, :create, :index]
 

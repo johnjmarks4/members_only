@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def profile
     @user = User.find_by(id: session[:user_id])
     if !@user.nil? && @user.authenticate(session[:password])
-      @current_user = log_in(@user)
+      log_in(@user)
       render 'profile'
     end
   end
