@@ -10,9 +10,9 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       session[:password] = params[:user][:password]
-      redirect_to sessions_create_path
+      redirect_to '/profile'
     else
-      redirect_to sessions_new_path
+      redirect_to '/profile'
     end
   end
 
