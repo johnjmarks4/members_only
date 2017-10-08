@@ -5,13 +5,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(author: session[:user_id], user_posts: params[:user_posts])
+    @post = Post.new(post_params)
     if @post.save
       redirect_to posts_index_path
     end
   end
 
   def index
+    @logged_in = session[:logged_in]
     @posts = Post.all
   end
 
@@ -22,5 +23,9 @@ class PostsController < ApplicationController
       flash[:error] = "You must be logged in to make a post"
       redirect_to sessions_new_path
     end
+  end
+
+  def post_params
+    params.require(:post).permit(:user_posts, :author, :author_name)
   end
 end

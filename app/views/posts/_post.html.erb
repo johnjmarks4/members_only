@@ -1,7 +1,7 @@
 <li>
   <% if @logged_in %>
-    <%= "#{post.id} #{post.author}" %>
+    <%= "#{post.user_posts} #{post.author_name}" %>
   <% else %>
-    <%= post.id %>
+    <%= post.user_posts %>
   <% end %>
 </li>

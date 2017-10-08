@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   def log_in(user)
     session[:user_id] = user.id
     cookies.permanent[:remember_token] = user.new_token(user)
+    session[:logged_in] = true
     current_user
   end
 
@@ -17,6 +18,7 @@ class ApplicationController < ActionController::Base
 
   def log_out
     @current_user = nil
+    session[:logged_in] = false
     cookies.delete(:remember_token)
   end
 end

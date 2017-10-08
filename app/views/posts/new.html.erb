@@ -1,4 +1,5 @@
 <%= form_for :post, url: '/posts/create' do |f| %>
   <%= f.text_area :user_posts %>
+  <%= f.hidden_field :author_name, value: @current_user.email %>
   <%= f.submit "Submit" %>
 <% end %>
